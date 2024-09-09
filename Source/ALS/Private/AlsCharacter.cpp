@@ -192,7 +192,7 @@ void AAlsCharacter::BeginPlay()
 
 	AlsCharacterMovement->SetRotationMode(RotationMode);
 
-	OnOverlayModeChanged(OverlayMode);
+	OnOverlayModeChanged(OverlayMode, OverlayMode);
 }
 
 void AAlsCharacter::CalcCamera(const float DeltaTime, FMinimalViewInfo& ViewInfo)
@@ -1057,7 +1057,7 @@ void AAlsCharacter::SetOverlayMode(const FGameplayTag& NewOverlayMode, const boo
 
 	MARK_PROPERTY_DIRTY_FROM_NAME(ThisClass, OverlayMode, this)
 
-	OnOverlayModeChanged(PreviousOverlayMode);
+	OnOverlayModeChanged(PreviousOverlayMode, NewOverlayMode);
 
 	if (bSendRpc)
 	{
@@ -1084,10 +1084,10 @@ void AAlsCharacter::ServerSetOverlayMode_Implementation(const FGameplayTag& NewO
 
 void AAlsCharacter::OnReplicated_OverlayMode(const FGameplayTag& PreviousOverlayMode)
 {
-	OnOverlayModeChanged(PreviousOverlayMode);
+	OnOverlayModeChanged(PreviousOverlayMode, OverlayMode);
 }
 
-void AAlsCharacter::OnOverlayModeChanged_Implementation(const FGameplayTag& PreviousOverlayMode) {}
+void AAlsCharacter::OnOverlayModeChanged_Implementation(const FGameplayTag& PreviousOverlayMode, const FGameplayTag& NewOverlayMode) {}
 
 void AAlsCharacter::SetLocomotionAction(const FGameplayTag& NewLocomotionAction)
 {

@@ -551,7 +551,6 @@ float AAlsCharacter::CalculateMantlingStartTime(const UAlsMantlingSettings* Mant
 	}
 
 	// https://landelare.github.io/2022/05/15/climbing-with-root-motion.html
-
 	const auto* Montage{MantlingSettings->Montage.Get()};
 	if (!IsValid(Montage))
 	{

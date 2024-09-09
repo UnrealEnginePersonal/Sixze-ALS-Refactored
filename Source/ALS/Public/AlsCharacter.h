@@ -336,7 +336,7 @@ private:
 
 protected:
 	UFUNCTION(BlueprintNativeEvent, Category = "Als Character")
-	void OnOverlayModeChanged(const FGameplayTag& PreviousOverlayMode);
+	void OnOverlayModeChanged(const FGameplayTag& PreviousOverlayMode, const FGameplayTag& NewOverlayMode);
 
 	// Locomotion Action
 

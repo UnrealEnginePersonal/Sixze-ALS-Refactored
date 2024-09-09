@@ -3,7 +3,9 @@
 #include "Animation/AnimInstance.h"
 #include "AlsLinkedAnimationInstance.generated.h"
 
+
 class AAlsCharacter;
+class UAlsAnimationInstance;
 
 UCLASS()
 class ALS_API UAlsLinkedAnimationInstance : public UAnimInstance
@@ -33,13 +35,12 @@ protected:
 	// because it is guaranteed that this function will be called before parallel animation evaluation. Reading
 	// variables that change in other functions can be dangerous because they can be changed in the game thread
 	// at the same time as being read in the worker thread, which can lead to undefined behavior or even a crash.
-	UFUNCTION(BlueprintPure, Category = "ALS|Linked Animation Instance",
-		Meta = (BlueprintThreadSafe, ReturnDisplayName = "Parent"))
+	UFUNCTION(BlueprintPure, Category = "ALS|Linked Animation Instance", Meta = (BlueprintThreadSafe, ReturnDisplayName = "Parent"))
 	UAlsAnimationInstance* GetParent() const;
 
 	UE_DEPRECATED(4.14, "Please use GetParent() instead")
-	UFUNCTION(BlueprintPure, Category = "ALS|Linked Animation Instance",
-		Meta = (DeprecatedFunction, DeprecationMessage = "Please use GetParent() instead."))
+	UFUNCTION(BlueprintPure, Category = "ALS|Linked Animation Instance", 
+		Meta = (DeprecatedFunction, DeprecationMessage = "Please use GetParent() instead.", BlueprintThreadSafe, ReturnDisplayName = "Parent"))
 	UAlsAnimationInstance* GetParentUnsafe() const;
 
 	UFUNCTION(BlueprintCallable, Category = "ALS|Linked Animation Instance", Meta = (BlueprintThreadSafe))
